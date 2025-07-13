@@ -4,6 +4,30 @@ document.addEventListener("DOMContentLoaded", () => {
 	const endInput = document.getElementById("end");
 	const saveButton = document.getElementById("save");
 	const status = document.getElementById("status");
+	const addCurrentSiteInput = document.getElementById(
+		"add-current-site-input"
+	);
+	const addCurrentSiteButton = document.getElementById(
+		"add-current-site-btn"
+	);
+
+	// Add current site to input
+	chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+		const hostname = new URL(tabs[0].url).hostname.replace(/^www\./, "");
+		console.log("Current site:", hostname);
+		addCurrentSiteInput.value = hostname;
+		addCurrentSiteInput.disabled = true;
+	});
+
+	// Add current site
+	addCurrentSiteButton.addEventListener("click", () => {
+		const site = addCurrentSiteInput.value;
+
+		if (site) {
+			sitesInput.value += `, ${site}`;
+			addCurrentSiteInput.value = "";
+		}
+	});
 
 	// Load saved settings
 	chrome.storage.local.get(
