@@ -23,10 +23,19 @@ document.addEventListener("DOMContentLoaded", () => {
 	addCurrentSiteButton.addEventListener("click", () => {
 		const site = addCurrentSiteInput.value;
 
-		if (site) {
-			sitesInput.value += `, ${site}`;
-			addCurrentSiteInput.value = "";
-		}
+		// Check if site is already blocked
+		chrome.storage.local.get("blockedSites", (data) => {
+			const blockedSites = data.blockedSites || [];
+			const isBlocked = blockedSites.includes(site);
+
+			if (isBlocked) {
+				status.textContent = "Site is already blocked";
+				setTimeout(() => (status.textContent = ""), 2000);
+			} else {
+				blockedSites.push(site);
+				sitesInput.value = blockedSites.join(", ");
+			}
+		});
 	});
 
 	// Load saved settings
