@@ -1,3 +1,14 @@
+:root {
+	--primary-color: #007bff;
+	--primary-hover: #0056b3;
+	--text-color: #fff;
+	--border-color: #ccc;
+	--label-color: gray;
+	--radius: 5px;
+	--font: Arial, Helvetica, sans-serif;
+	--padding: 10px;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -5,29 +16,21 @@
 }
 
 body {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font);
 	width: 300px;
-	height: auto;
 	padding: 20px;
 }
 
 h2 {
 	text-align: center;
 	margin-bottom: 20px;
-	color: #007bff;
+	color: var(--primary-color);
 }
 
 .container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-}
-
-.time-container {
-	display: flex;
-	width: 100%;
-	margin-bottom: 10px;
-	gap: 10px;
 }
 
 .input-container {
@@ -39,49 +42,52 @@ h2 {
 }
 
 .input-container label {
-	color: gray;
+	color: var(--label-color);
+	margin-bottom: 5px;
 }
 
-.input-container textarea {
+textarea,
+input[type="time"],
+input[type="text"] {
 	width: 100%;
+	font-size: 16px;
+	padding: var(--padding);
+	border: 1px solid var(--border-color);
+	border-radius: var(--radius);
+}
+
+textarea {
 	height: 100px;
-	font-size: 16px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
+	resize: none;
 }
 
-.input-container textarea:focus {
-	border: 1px solid #007bff;
+textarea:focus,
+input[type="time"]:focus,
+input[type="text"]:focus {
+	border-color: var(--primary-color);
 	outline: none;
 }
 
-input[type="time"] {
+.time-container {
+	display: flex;
 	width: 100%;
-	font-size: 16px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-}
-
-input[type="time"]:focus {
-	border: 1px solid #007bff;
-	outline: none;
+	gap: 10px;
+	margin-bottom: 10px;
 }
 
 button {
-	border-radius: 5px;
-	background-color: #007bff;
+	border-radius: var(--radius);
+	background-color: var(--primary-color);
 	border: none;
-	color: #fff;
-	padding: 10px 20px;
+	color: var(--text-color);
+	padding: var(--padding) 20px;
 	font-size: 16px;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
 }
 
 button:hover {
-	background-color: #0056b3;
+	background-color: var(--primary-hover);
 }
 
 #status {
@@ -92,22 +98,19 @@ button:hover {
 
 .add-current-site-container {
 	display: flex;
-	align-items: center;
+	width: 100%;
 }
 
-input[type="text"] {
-	width: 100%;
-	height: 100%;
-	font-size: 16px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px 0 0 5px;
+.add-current-site-container input[type="text"] {
+	border-radius: var(--radius) 0 0 var(--radius);
 }
 
 .add-current-site-container button {
-	height: 100%;
-	font-size: 16px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 0 5px 5px 0;
+	border-radius: 0 var(--radius) var(--radius) 0;
+	border: 1px solid var(--border-color);
+	background-color: var(--text-color);
+	color: black;
+}
+.add-current-site-container button:hover {
+	background-color: #f2f2f2;
 }
