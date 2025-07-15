@@ -55,6 +55,16 @@ document.addEventListener("DOMContentLoaded", () => {
 		blockedSitesList.appendChild(li);
 	}
 
+	function siteAlreadyInList(site) {
+		const inputs = blockedSitesList.querySelectorAll("input");
+		for (const input of inputs) {
+			if (input.value === site) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	// Add current site
 	addCurrentSiteButton.addEventListener("click", () => {
 		const site = addCurrentSiteInput.value;
@@ -70,9 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
 			} else {
 				blockedSites.push(site);
 				sitesInput.value = blockedSites.join(", ");
-				addSiteToList(site, blockedSites);
-				status.textContent = "Site added";
-				setTimeout(() => (status.textContent = ""), 2000);
+				if (!siteAlreadyInList(site)) {
+					addSiteToList(site, blockedSites);
+					status.textContent = "Site added";
+					setTimeout(() => (status.textContent = ""), 2000);
+				} else {
+					status.textContent = "Site already in list";
+					setTimeout(() => (status.textContent = ""), 2000);
+				}
 			}
 		});
 	});
