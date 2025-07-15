@@ -1,12 +1,15 @@
 :root {
 	--primary-color: #007bff;
 	--primary-hover: #0056b3;
+	--remove-color: #ff0000;
+	--remove-hover: #cc0000;
 	--text-color: #fff;
 	--border-color: #ccc;
 	--label-color: gray;
 	--radius: 5px;
 	--font: Arial, Helvetica, sans-serif;
 	--padding: 10px;
+	--svg-size: 20px;
 }
 
 * {
@@ -47,6 +50,7 @@ h2 {
 }
 
 textarea,
+ul,
 input[type="time"],
 input[type="text"] {
 	width: 100%;
@@ -59,6 +63,16 @@ input[type="text"] {
 textarea {
 	height: 100px;
 	resize: none;
+}
+
+ul {
+	height: 100px;
+	overflow-y: scroll;
+	list-style: none;
+}
+
+li {
+	margin-bottom: 5px;
 }
 
 textarea:focus,
@@ -96,21 +110,43 @@ button:hover {
 	margin-top: 10px;
 }
 
-.add-current-site-container {
+.add-current-site-container,
+.remove-site-container {
 	display: flex;
 	width: 100%;
 }
 
-.add-current-site-container input[type="text"] {
+.add-current-site-container input[type="text"],
+.remove-site-container input[type="text"] {
 	border-radius: var(--radius) 0 0 var(--radius);
 }
 
-.add-current-site-container button {
+.add-current-site-container button,
+.remove-site-container button {
 	border-radius: 0 var(--radius) var(--radius) 0;
 	border: 1px solid var(--border-color);
+}
+
+.add-current-site-container button {
 	background-color: var(--text-color);
 	color: black;
 }
+
+.remove-site-container button {
+	background-color: var(--remove-color);
+	color: var(--text-color);
+}
+
+.remove-site-container button svg {
+	width: var(--svg-size);
+	height: var(--svg-size);
+	fill: var(--text-color);
+}
+
 .add-current-site-container button:hover {
 	background-color: #f2f2f2;
+}
+
+.remove-site-container button:hover {
+	background-color: var(--remove-hover);
 }
